@@ -15,7 +15,7 @@ export const environment = {
       measurementId: 'G-635CVDXGQ'
     }
   };
-  
+
 
 /*
  * For easier debugging in development mode, you can import the following file
