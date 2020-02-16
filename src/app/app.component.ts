@@ -8,22 +8,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy{
-  courses: any;
-  subscription: Subscription;
+export class AppComponent{
+  
+  courses$;
 
   constructor(db: AngularFireDatabase) {
-    this.subscription = db.list('/courses')
-    .valueChanges().subscribe(
-      courses => {
-        this.courses = courses;
-        console.log(this.courses);
-      }
-    );
+    this.courses$ = db.list('/courses').valueChanges();
   }
 
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
+
 
 }
