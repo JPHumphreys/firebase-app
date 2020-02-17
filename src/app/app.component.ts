@@ -1,7 +1,7 @@
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Component, OnDestroy } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Component } from '@angular/core';
 import 'firebase/database';
-import { Subscription } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,21 @@ export class AppComponent{
     this.author$ = db.object('/authors/1').valueChanges();
   }
 
+  add(course: HTMLInputElement){
+
+    firebase.database().ref('/courses').push({
+      name: course.value,
+      price: 150,
+      isLive: true,
+      sections: [
+        { title: 'Components'},
+        { title: 'Directives'},
+        { title: 'Templetes'},
+      ]
+    });
+    course.value = '';
+
+  }
 
 
 }
